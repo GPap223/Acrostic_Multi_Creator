@@ -8,6 +8,11 @@
 #define FALSE 0
 #define TRUE 1
 
+// ---------------------------------------------------------------
+// Data Structure: Doubly Linked List
+// Uses dynamic nodes to store words and metadata (length, frequency).
+// 'next' and 'previous' pointers allow bidirectional traversal.
+// ---------------------------------------------------------------    
 typedef struct wList 
 {
     char *word;
@@ -34,6 +39,11 @@ int EmptyListCheck(wordList *head)
     return head == NULL;
 }
 
+// ---------------------------------------------------------------
+// Sorting Algorithm (Bubble Sort for Linked List)
+// Sorts the list alphabetically to optimize user searches.
+// Swaps data payloads between nodes instead of re-linking pointers.
+// ---------------------------------------------------------------
 void SortWordList(wordList *head)
 {
     if (!head || !head->next) return;
@@ -540,6 +550,12 @@ void AkrostixidaLushEasy(wordList *head, char lejh[])
     }
 }
 
+// ---------------------------------------------------------------
+// Acrostic Generation Logic (Heuristic Search)
+// Iterates through the list to find the best matching word for each letter.
+// EASY MODE: Prioritizes shorter words.
+// HARD MODE: Prioritizes longer, less frequent words.
+// ---------------------------------------------------------------
 int AkrostixidaPrintEasy(wordList *head, char lejh[], char input[], char ***hiddenLetters)
 {
     int mhkos2 = strlen(lejh);
@@ -921,7 +937,11 @@ int AkrostixidaPrintHard(wordList *head, char lejh[], char input[], char ***hidd
     return TRUE;
 }
 
-
+// ---------------------------------------------------------------
+// File I/O & Parsing
+// Reads text files, removes non-alphabetic characters, and
+// avoids duplicates by checking existing words in the list.
+// ---------------------------------------------------------------
 void InsertFromFile(wordList *head, char *filename)
 {
     FILE *fp = fopen(filename, "r");
@@ -1364,7 +1384,12 @@ int main()
                current->numOfTimes, current->insertionDate, current->insertionTime);
         current = current->next;
     }
-
+    
+    // ---------------------------------------------------------------
+    // Memory Cleanup (Garbage Collection)
+    // Traversing the list to free all allocated nodes and strings
+    // to prevent Memory Leaks before exiting.
+    // ---------------------------------------------------------------
     current = head;
     while (current)
     {
@@ -1385,3 +1410,4 @@ int main()
 
     return 0;
 }
+
